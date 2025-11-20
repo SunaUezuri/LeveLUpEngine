@@ -1,0 +1,63 @@
+/* Card da IA */
+.card-ai {
+    background: linear-gradient(145deg, #2c2c44, #1f1f33);
+    border: 1px solid rgba(255, 193, 7, 0.3); /* Borda amarela sutil */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.card-ai .card-header {
+    background: rgba(255, 193, 7, 0.1); /* Fundo amarelo transparente */
+    color: #ffc107; /* Texto amarelo brilhante */
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    font-weight: bold;
+}
+
+.card-ai .text-muted {
+    color: #b0b0b0 !important; /* Texto cinza mais claro para leitura */
+}
+
+/* Input do tópico da IA */
+#aiTopic {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#aiTopic::placeholder {
+    color: #6c757d;
+}
+
+#aiLoading {
+    color: #ffc107;
+    font-weight: 600;
+}
+
+/* Tabela de Tarefas */
+.tasks-table-card {
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.table-dark {
+    background-color: transparent;
+    --bs-table-bg: transparent;
+}
+
+.table-dark th {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #a0a0a0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-dark td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+.table-dark tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}

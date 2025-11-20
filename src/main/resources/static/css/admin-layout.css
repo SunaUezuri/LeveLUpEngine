@@ -1,0 +1,132 @@
+:root {
+    --bg-dark: #0f0c29;
+    --sidebar-bg: rgba(20, 20, 40, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --primary-purple: #8E2DE2;
+    --accent-orange: #FF512F;
+    --text-gray: #a0a0a0;
+    --text-white: #ffffff;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-dark), #24243e);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* --- Sidebar --- */
+#sidebar {
+    min-width: 260px;
+    max-width: 260px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    transition: all 0.3s;
+    min-height: 100vh;
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#sidebar .sidebar-header {
+    padding: 30px 20px;
+    background: linear-gradient(to right, rgba(142, 45, 226, 0.1), transparent);
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    flex-grow: 1;
+}
+
+#sidebar ul li a {
+    padding: 15px 25px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+#sidebar ul li a:hover, #sidebar ul li a.active {
+    color: #fff;
+    background: linear-gradient(90deg, rgba(255, 81, 47, 0.1), transparent);
+    border-left-color: var(--accent-orange);
+}
+
+#sidebar ul li a i {
+    margin-right: 15px;
+    width: 25px;
+    text-align: center;
+    color: var(--accent-orange); /* Ícones laranjas por padrão */
+}
+
+/* Submenu Admin */
+#adminSubmenu {
+    background: rgba(0,0,0,0.2);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+#adminSubmenu li a {
+    padding-left: 50px;
+    font-size: 0.9rem;
+}
+
+/* --- Botão de Logout (Correção) --- */
+.logout-container {
+    padding: 20px;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0,0,0,0.2);
+    margin-top: auto; /* Empurra para o final */
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    background: transparent; /* Fundo transparente */
+    color: var(--text-gray);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: rgba(220, 53, 69, 0.15); /* Fundo avermelhado no hover */
+    border-color: #dc3545;
+    color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-logout i {
+    color: inherit; /* Ícone segue a cor do texto */
+}
+
+/* Conteúdo Principal */
+#content {
+    width: 100%;
+    padding: 30px;
+    min-height: 100vh;
+}

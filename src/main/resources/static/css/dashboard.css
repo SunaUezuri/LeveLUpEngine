@@ -1,82 +1,6 @@
-:root {
-    --bg-dark: #0f0c29;
-    --sidebar-bg: #1a1a2e;
-    --card-bg: #16213e;
-    --primary-purple: #8E2DE2;
-    --accent-orange: #FF512F;
-    --text-white: #eaeaea;
-    --text-muted: #8b8b8b;
-    --success-green: #00b894;
-}
 
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-white);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
-}
-
-/* Layout Wrapper */
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-
-/* Sidebar */
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: var(--sidebar-bg);
-    color: #fff;
-    transition: all 0.3s;
-    min-height: 100vh;
-    border-right: 1px solid rgba(255,255,255,0.05);
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: rgba(0,0,0,0.2);
-    text-align: center;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-}
-
-#sidebar ul li a {
-    padding: 15px 25px;
-    font-size: 1.1em;
-    display: block;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: 0.3s;
-    border-left: 4px solid transparent;
-}
-
-#sidebar ul li a:hover, #sidebar ul li a.active {
-    color: #fff;
-    background: rgba(255,255,255,0.05);
-    border-left-color: var(--accent-orange);
-}
-
-#sidebar ul li a i {
-    margin-right: 10px;
-    width: 20px;
-    text-align: center;
-}
-
-/* Conteúdo Principal */
-#content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-}
-
-/* Cards Gamificados */
 .game-card {
-    background: var(--card-bg);
+    background: #16213e;
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: 15px;
     padding: 1.5rem;
@@ -106,7 +30,7 @@ body {
 }
 
 .stat-label {
-    color: var(--text-muted);
+    color: var(--text-gray); /* Usando a variável do admin-layout */
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.8rem;
@@ -114,7 +38,7 @@ body {
 
 /* Perfil do Usuário (Hero Section) */
 .profile-hero {
-    background: linear-gradient(135deg, var(--sidebar-bg), var(--bg-dark));
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), var(--bg-dark)); /* Ajustado para usar vars */
     border-radius: 15px;
     padding: 2rem;
     display: flex;
@@ -151,6 +75,13 @@ body {
 }
 
 /* Ranking Table */
+.ranking-card {
+    background: #16213e;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
 .ranking-table {
     width: 100%;
     border-collapse: separate;
@@ -158,15 +89,16 @@ body {
 }
 
 .ranking-table th {
-    color: var(--text-muted);
+    color: var(--text-gray);
     font-weight: 600;
     padding: 10px 15px;
 }
 
 .ranking-table td {
-    background: var(--card-bg);
+    background: rgba(255,255,255,0.03); /* Levemente transparente */
     padding: 15px;
     vertical-align: middle;
+    color: #fff;
 }
 
 .ranking-table tr td:first-child {
@@ -188,8 +120,20 @@ body {
     justify-content: center;
     border-radius: 50%;
     background: rgba(255,255,255,0.1);
+    color: #fff;
 }
 
 .rank-1 .rank-pos { background: #FFD700; color: #000; box-shadow: 0 0 10px #FFD700; }
 .rank-2 .rank-pos { background: #C0C0C0; color: #000; }
 .rank-3 .rank-pos { background: #CD7F32; color: #000; }
+
+.badge-you {
+    background: rgba(142, 45, 226, 0.2);
+    color: #d4a5ff;
+    border: 1px solid rgba(142, 45, 226, 0.4);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-left: 8px;
+    vertical-align: middle;
+}
