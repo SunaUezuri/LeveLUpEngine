@@ -1,0 +1,195 @@
+:root {
+    --bg-dark: #0f0c29;
+    --sidebar-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --primary-purple: #8E2DE2;
+    --accent-orange: #FF512F;
+    --text-white: #eaeaea;
+    --text-muted: #8b8b8b;
+    --success-green: #00b894;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Layout Wrapper */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Sidebar */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: var(--sidebar-bg);
+    color: #fff;
+    transition: all 0.3s;
+    min-height: 100vh;
+    border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 15px 25px;
+    font-size: 1.1em;
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 4px solid transparent;
+}
+
+#sidebar ul li a:hover, #sidebar ul li a.active {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+    border-left-color: var(--accent-orange);
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Conteúdo Principal */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* Cards Gamificados */
+.game-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02));
+    transform: skewX(-15deg);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: -webkit-linear-gradient(45deg, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+/* Perfil do Usuário (Hero Section) */
+.profile-hero {
+    background: linear-gradient(135deg, var(--sidebar-bg), var(--bg-dark));
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border: 1px solid var(--primary-purple);
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.1);
+}
+
+.level-badge {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--accent-orange);
+    padding: 5px;
+    background: rgba(0,0,0,0.5);
+    object-fit: contain;
+}
+
+.progress-container {
+    flex-grow: 1;
+}
+
+.progress {
+    height: 10px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--accent-orange), var(--primary-purple));
+    box-shadow: 0 0 10px var(--primary-purple);
+}
+
+/* Ranking Table */
+.ranking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.ranking-table th {
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 10px 15px;
+}
+
+.ranking-table td {
+    background: var(--card-bg);
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.ranking-table tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.ranking-table tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.rank-pos {
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+}
+
+.rank-1 .rank-pos { background: #FFD700; color: #000; box-shadow: 0 0 10px #FFD700; }
+.rank-2 .rank-pos { background: #C0C0C0; color: #000; }
+.rank-3 .rank-pos { background: #CD7F32; color: #000; }
