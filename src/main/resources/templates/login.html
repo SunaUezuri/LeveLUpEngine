@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevelUp - Acesso Restrito</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+
+<div class="background-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="login-card animate__animated animate__fadeInUp">
+
+        <div class="logo-area">
+            <i class="fa-solid fa-rocket logo-icon"></i>
+            <h2 class="app-title">LevelUp</h2>
+            <p class="text-white-50">Gamification Engine</p>
+        </div>
+
+        <div th:if="${param.error}" class="alert alert-danger text-center fade show" role="alert">
+            <i class="fa-solid fa-circle-exclamation me-2"></i>
+            Credenciais inválidas.
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success text-center fade show" role="alert">
+            <i class="fa-solid fa-check-circle me-2"></i>
+            Sessão finalizada.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="username" name="username" placeholder="name@example.com" required autofocus>
+                <label for="username"><i class="fa-solid fa-envelope me-2"></i>Email Corporativo</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <label for="password"><i class="fa-solid fa-lock me-2"></i>Senha</label>
+            </div>
+
+            <button type="submit" class="btn btn-tech mt-3">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span>Entrar no Sistema</span>
+            </button>
+
+        </form>
+
+        <div class="footer-text">
+            <p class="mb-0">&copy; 2025 LevelUp Inc.</p>
+            <small>Acesso monitorado e restrito.</small>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>
