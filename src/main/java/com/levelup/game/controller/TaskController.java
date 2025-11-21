@@ -127,4 +127,18 @@ public class TaskController {
         CreateTaskDto suggestion = aiTaskService.generateTaskSuggestion(topic);
         return ResponseEntity.ok(suggestion);
     }
+
+    @PostMapping("/analyze-ai")
+    @ResponseBody
+    public ResponseEntity<CreateTaskDto> analyzeTask(@RequestBody Map<String, String> payload) {
+        String title = payload.get("title");
+        String description = payload.get("description");
+
+        if (title == null || description == null || title.isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        CreateTaskDto estimation = aiTaskService.analyzeAndEstimatePoints(title, description);
+        return ResponseEntity.ok(estimation);
+    }
 }

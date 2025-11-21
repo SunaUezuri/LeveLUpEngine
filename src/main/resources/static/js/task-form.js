@@ -1,54 +1,107 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const btnAi = document.getElementById('btnGenerateAi');
-    const inputTopic = document.getElementById('aiTopic');
-    const loadingIndicator = document.getElementById('aiLoading');
+    // --- FUNCIONALIDADE 1: GERAR TAREFA (Brainstorm) ---
+    const btnGenerate = document.getElementById('btnGenerateAi');
 
-    // Campos do formulário para preencher
-    const fieldTitle = document.getElementById('title');
-    const fieldDesc = document.getElementById('description');
-    const fieldPoints = document.getElementById('pointsValue');
-    const fieldType = document.getElementById('taskType');
+    if (btnGenerate) {
+        btnGenerate.addEventListener('click', function () {
+            const topicInput = document.getElementById('aiTopic');
+            const loadingDiv = document.getElementById('aiLoading');
+            const topic = topicInput.value;
 
-    if (btnAi) {
-        btnAi.addEventListener('click', function() {
-            const topic = inputTopic.value.trim();
-            if (!topic) {
+            if (!topic.trim()) {
                 alert('Por favor, digite um tema para a IA.');
                 return;
             }
 
             // UI Loading
-            btnAi.disabled = true;
-            loadingIndicator.classList.remove('d-none');
+            btnGenerate.disabled = true;
+            btnGenerate.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            loadingDiv.classList.remove('d-none');
 
-            // Chama o Backend Java
             fetch('/admin/tasks/generate-ai', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Se o CSRF estivesse ativo, precisaríamos passar o token aqui
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ topic: topic })
             })
-            .then(response => {
-                if (!response.ok) throw new Error('Erro na requisição');
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                // Preenche o formulário automaticamente!
-                fieldTitle.value = data.title;
-                fieldDesc.value = data.description;
-                fieldPoints.value = data.pointsValue;
-                fieldType.value = data.taskType;
+                // Preencher formulário
+                document.getElementById('title').value = data.title;
+                document.getElementById('description').value = data.description;
+                document.getElementById('pointsValue').value = data.pointsValue;
+                document.getElementById('taskType').value = data.taskType;
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Falha ao gerar tarefa com IA. Tente novamente.');
+                alert('Erro ao consultar a IA. Tente novamente.');
             })
             .finally(() => {
-                btnAi.disabled = false;
-                loadingIndicator.classList.add('d-none');
+                // UI Reset
+                btnGenerate.disabled = false;
+                btnGenerate.innerHTML = '<i class="fa-solid fa-bolt me-2"></i> Gerar';
+                loadingDiv.classList.add('d-none');
+            });
+        });
+    }
+
+    // --- FUNCIONALIDADE 2: ANALISAR E ESTIMAR PONTOS ---
+    const btnAnalyze = document.getElementById('btnAnalyzeAi');
+
+    if (btnAnalyze) {
+        btnAnalyze.addEventListener('click', function () {
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+
+            if (!title.trim()) {
+                alert('Preencha pelo menos o Título para a IA analisar a dificuldade.');
+                return;
+            }
+
+            // UI Loading Específico do Botão
+            const originalIcon = btnAnalyze.innerHTML;
+            btnAnalyze.innerHTML = '<i class="fa-solid fa-brain fa-bounce"></i> Analisando...';
+            btnAnalyze.classList.add('analyzing');
+
+            fetch('/admin/tasks/analyze-ai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: title,
+                    description: description
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Atualiza apenas Pontos e Tipo (preserva título e melhora descrição se vier)
+
+                // Animação visual no campo de pontos para mostrar que mudou
+                const pointsInput = document.getElementById('pointsValue');
+                pointsInput.style.backgroundColor = 'rgba(142, 45, 226, 0.3)';
+                pointsInput.value = data.pointsValue;
+
+                const typeInput = document.getElementById('taskType');
+                typeInput.value = data.taskType;
+                typeInput.style.backgroundColor = 'rgba(142, 45, 226, 0.3)';
+
+                // Melhora a descrição se a IA mandou uma versão melhorada
+                if(data.description && data.description.length > description.length) {
+                     document.getElementById('description').value = data.description;
+                }
+
+                // Remove o destaque após 1 segundo
+                setTimeout(() => {
+                    pointsInput.style.backgroundColor = '';
+                    typeInput.style.backgroundColor = '';
+                }, 1000);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Não foi possível estimar os pontos agora.');
+            })
+            .finally(() => {
+                btnAnalyze.innerHTML = originalIcon;
+                btnAnalyze.classList.remove('analyzing');
             });
         });
     }

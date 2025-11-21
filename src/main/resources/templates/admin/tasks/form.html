@@ -73,10 +73,24 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="pointsValue" class="form-label d-block">Pontos (XP)</label>
+                                <label for="pointsValue" class="form-label d-block">
+                                    Pontos (XP)
+                                    <span class="badge bg-warning text-dark ms-2" style="font-size: 0.7em;">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> IA Auto-Calc
+                                    </span>
+                                </label>
+
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary text-warning fw-bold">XP</span>
+
                                     <input type="number" class="form-control form-control-tech" id="pointsValue" th:field="*{pointsValue}" min="1" placeholder="Ex: 50">
+
+                                    <button class="btn btn-ai-analysis" type="button" id="btnAnalyzeAi" title="Calcular XP baseado na descrição">
+                                        <i class="fa-solid fa-calculator me-1"></i> Calcular
+                                    </button>
+                                </div>
+                                <div class="form-text text-light opacity-50" style="font-size: 0.8rem;">
+                                    Preencha Título e Descrição e clique em Calcular.
                                 </div>
                             </div>
                         </div>
