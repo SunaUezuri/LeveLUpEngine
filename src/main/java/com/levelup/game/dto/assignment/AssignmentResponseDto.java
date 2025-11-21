@@ -5,9 +5,11 @@ import java.time.LocalDate;
 public record AssignmentResponseDto(
         Long id,
         String taskTitle,
+        String assignedToName,
         String taskDescription,
         Integer pointsValue,
         String taskType,
+        String type,
         LocalDate periodStart,
         LocalDate periodEnd,
         Boolean isMandatory,

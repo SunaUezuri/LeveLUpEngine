@@ -32,6 +32,11 @@
                 <ul class="collapse show list-unstyled" id="adminSubmenu">
                     <li><a href="/admin/tasks" class="active">Gerenciar Tarefas</a></li>
                     <li><a href="/admin/users">Gerenciar Usuários</a></li>
+                    <li>
+                        <a href="/admin/assignments" th:classappend="${activePage == 'admin-assignments' ? 'active' : ''}">
+                            Atribuições
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

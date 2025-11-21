@@ -27,9 +27,11 @@ public class TaskAssignmentMapper {
         return new AssignmentResponseDto(
                 entity.getId(),
                 entity.getTask().getTitle(),
+                assigneeName,
                 entity.getTask().getDescription(),
                 entity.getTask().getPointsValue(),
                 entity.getTask().getTaskType(),
+                type,
                 entity.getPeriodStart(),
                 entity.getPeriodEnd(),
                 entity.getIsMandatory() == 'Y',

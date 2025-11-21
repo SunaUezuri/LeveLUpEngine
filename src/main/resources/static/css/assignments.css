@@ -1,0 +1,106 @@
+/* Variáveis Locais */
+:root {
+    --table-bg: #1a1a2e;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.03);
+}
+
+/* Card da Tabela */
+.assignments-table-card {
+    background: var(--table-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Estilo da Tabela */
+.table-assignments {
+    margin-bottom: 0;
+    color: #e0e0e0;
+    --bs-table-bg: transparent;
+    background-color: transparent;
+}
+
+.table-assignments th {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #a0a0a0;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-assignments td {
+    background-color: transparent;
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.table-assignments tr:hover td {
+    background-color: var(--hover-bg);
+    color: #fff;
+}
+
+/* --- Badges Específicos --- */
+
+/* Tipo de Atribuição */
+.badge-type {
+    font-size: 0.75rem;
+    padding: 0.4em 0.8em;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+/* Individual: Azul Neon */
+.badge-individual {
+    background: rgba(0, 184, 148, 0.15);
+    color: #55efc4;
+    border-color: rgba(0, 184, 148, 0.3);
+}
+
+/* Equipe: Roxo Neon */
+.badge-team {
+    background: rgba(142, 45, 226, 0.15);
+    color: #d6a2e8;
+    border-color: rgba(142, 45, 226, 0.3);
+}
+
+/* Obrigatório: Vermelho Sutil */
+.badge-mandatory {
+    background: rgba(255, 118, 117, 0.1);
+    color: #ff7675;
+    border: 1px solid rgba(255, 118, 117, 0.2);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+/* Ícones e Nomes */
+.assignee-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.assignee-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Datas */
+.date-display {
+    color: #b2bec3;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}

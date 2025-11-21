@@ -1,0 +1,125 @@
+/* Variáveis */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --accent-orange: #FF512F;
+    --accent-purple: #8E2DE2;
+}
+
+/* Card Principal */
+.assignment-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.assignment-card-header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+.assignment-card-header h4 {
+    margin: 0;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: -webkit-linear-gradient(45deg, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.assignment-card-body {
+    padding: 2.5rem;
+}
+
+/* --- Toggle Switch Customizado (User vs Team) --- */
+.assign-type-toggle {
+    background: var(--input-bg);
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    gap: 5px;
+}
+
+.btn-check:checked + .btn-custom-toggle {
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-purple));
+    color: white;
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+    border-color: transparent;
+}
+
+.btn-custom-toggle {
+    flex: 1;
+    border: 1px solid transparent;
+    color: #a0a0a0;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.btn-custom-toggle:hover:not(.active) {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+}
+
+/* --- Inputs --- */
+.form-label {
+    color: #b2bec3;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control-dark {
+    background: var(--input-bg);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.form-control-dark:focus {
+    background: rgba(0,0,0,0.4);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 4px rgba(142, 45, 226, 0.15);
+    outline: none;
+    color: #fff;
+}
+
+/* Remove o ícone padrão de data no Chrome para estilizar melhor se quiser,
+   ou deixa padrão mas com cores invertidas */
+.form-control-dark::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* --- Switch (Obrigatório) --- */
+.form-switch .form-check-input {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    width: 3em;
+    height: 1.5em;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
