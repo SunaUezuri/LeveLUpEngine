@@ -119,9 +119,21 @@ public class TaskController {
         return "redirect:/admin/tasks";
     }
 
+    // --- REATIVAÇÃO
+    @GetMapping("/reactivate/{id}")
+    public String reactivateTask(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            taskService.reactivate(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Tarefa reativada com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao reativar: " + e.getMessage());
+        }
+        return "redirect:/admin/tasks";
+    }
+
     // --- API AJAX PARA IA (Chamado pelo JavaScript da tela) ---
     @PostMapping("/generate-ai")
-    @ResponseBody // Retorna JSON, não HTML
+    @ResponseBody
     public ResponseEntity<CreateTaskDto> generateAiTask(@RequestBody Map<String, String> payload) {
         String topic = payload.get("topic");
         CreateTaskDto suggestion = aiTaskService.generateTaskSuggestion(topic);

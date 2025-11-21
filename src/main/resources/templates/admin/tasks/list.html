@@ -60,18 +60,32 @@
                             <td class="fw-bold" style="color: var(--accent-orange);" th:text="${task.pointsValue} + ' XP'">50 XP</td>
                             <td>
                                     <span class="badge"
-                                          th:classappend="${task.isActive == 'Y' ? 'bg-success' : 'bg-secondary'}"
+                                          th:classappend="${task.isActive.toString() == 'Y' ? 'bg-success' : 'bg-secondary'}"
                                           th:text="${task.statusLabel}">Ativo</span>
                             </td>
                             <td class="text-end">
-                                <a th:href="@{/admin/tasks/edit/{id}(id=${task.id})}" class="btn btn-sm btn-outline-light me-1">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a th:href="@{/admin/tasks/delete/{id}(id=${task.id})}"
-                                   class="btn btn-sm btn-outline-danger"
-                                   onclick="return confirm('Desativar tarefa?');">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                                <div th:if="${task.isActive.toString() == 'Y'}">
+                                    <a th:href="@{/admin/tasks/edit/{id}(id=${task.id})}"
+                                       class="btn btn-sm btn-outline-light me-1"
+                                       title="Editar">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    <a th:href="@{/admin/tasks/delete/{id}(id=${task.id})}"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Desativar"
+                                       onclick="return confirm('Desativar esta tarefa?');">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+
+                                <div th:if="${task.isActive.toString() == 'N'}">
+                                    <a th:href="@{/admin/tasks/reactivate/{id}(id=${task.id})}"
+                                       class="btn btn-sm btn-outline-success"
+                                       title="Reativar Tarefa"
+                                       onclick="return confirm('Deseja reativar esta tarefa?');">
+                                        <i class="fa-solid fa-rotate-left"></i> Reativar
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         </tbody>

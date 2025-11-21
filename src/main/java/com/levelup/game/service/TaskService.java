@@ -79,4 +79,13 @@ public class TaskService {
         task.setIsActive('N');
         taskRepository.save(task);
     }
+
+    @Transactional
+    public void reactivate(Long id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
+
+        task.setIsActive('Y');
+        taskRepository.save(task);
+    }
 }
