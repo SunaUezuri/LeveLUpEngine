@@ -25,11 +25,4 @@ public class RewardRedemptionService {
                 .collect(Collectors.toList());
     }
 
-    // Histórico global (para o Admin auditar)
-    @Transactional(readOnly = true)
-    public List<RedemptionResponseDto> getAllRedemptions() {
-        return redemptionRepository.findAll().stream()
-                .map(redemptionMapper::toDto)
-                .collect(Collectors.toList());
-    }
 }

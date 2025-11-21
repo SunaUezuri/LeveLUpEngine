@@ -35,12 +35,6 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
-    public UserResponseDto findById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
-        return userMapper.toDto(user);
-    }
 
     @Transactional(readOnly = true)
     public User findEntityByEmail(String email) {

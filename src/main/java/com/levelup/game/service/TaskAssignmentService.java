@@ -81,21 +81,6 @@ public class TaskAssignmentService {
     }
 
     @Transactional
-    public void update(UpdateAssignmentDto dto) {
-        TaskAssignment assignment = assignmentRepository.findById(dto.id())
-                .orElseThrow(() -> new ResourceNotFoundException("Atribuição não encontrada"));
-
-        assignment.setPeriodStart(dto.periodStart());
-        assignment.setPeriodEnd(dto.periodEnd());
-
-        if (dto.isMandatory() != null) {
-            assignment.setIsMandatory(dto.isMandatory() ? 'Y' : 'N');
-        }
-
-        assignmentRepository.save(assignment);
-    }
-
-    @Transactional
     public void delete(Long id) {
         assignmentRepository.deleteById(id);
     }
