@@ -40,8 +40,8 @@
                 </tr>
                 </thead>
                     <tbody>
-                    <tr th:each="assign : ${assignments}">
-                        <td class="text-muted" th:text="${assign.id}">1</td>
+                    <tr th:each="assign : ${assignments}"
+                        th:classappend="${assign.isCompleted ? 'table-success' : ''}">
                         <td>
                             <strong class="text-white" th:text="${assign.taskTitle}">Título</strong>
                             <span th:if="${assign.isMandatory}" class="badge-mandatory rounded px-2 py-1 mt-1 d-inline-block">
@@ -65,6 +65,14 @@
                             <div class="date-display">
                                 <span th:text="${#temporals.format(assign.periodEnd, 'dd/MM/yyyy')}">10/10/2025</span>
                             </div>
+                        </td>
+                        <td>
+                            <span th:if="${assign.isCompleted}" class="badge bg-success">
+                                <i class="fa-solid fa-check"></i> Concluído
+                            </span>
+                            <span th:unless="${assign.isCompleted}" th:text="${#temporals.format(assign.periodEnd, 'dd/MM/yyyy')}">
+                                30/11/2025
+                            </span>
                         </td>
                         <td class="text-end">
                             <a th:href="@{/admin/assignments/delete/{id}(id=${assign.id})}"

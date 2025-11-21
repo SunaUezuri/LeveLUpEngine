@@ -7,6 +7,7 @@ import com.levelup.game.exception.ResourceNotFoundException;
 import com.levelup.game.mapper.TaskAssignmentMapper;
 import com.levelup.game.model.TaskAssignment;
 import com.levelup.game.repository.TaskAssignmentRepository;
+import com.levelup.game.repository.TaskCompletionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +20,41 @@ import java.util.stream.Collectors;
 public class TaskAssignmentService {
 
     private final TaskAssignmentRepository assignmentRepository;
+    private final TaskCompletionRepository completionRepository;
     private final TaskAssignmentMapper assignmentMapper;
 
     @Transactional(readOnly = true)
     public List<AssignmentResponseDto> findAll() {
-        return assignmentRepository.findAll().stream()
-                .map(assignmentMapper::toDto)
+
+        List<TaskAssignment> assignments = assignmentRepository.findAll();
+
+        return assignments.stream()
+                .map(entity -> {
+                    AssignmentResponseDto dto = assignmentMapper.toDto(entity);
+
+                    boolean isCompleted = false;
+
+                    if (entity.getUser() != null) {
+                        isCompleted = completionRepository.existsByUserIdAndTaskId(
+                                entity.getUser().getId(),
+                                entity.getTask().getId()
+                        );
+                    }
+                    return new AssignmentResponseDto(
+                            dto.id(),
+                            dto.taskTitle(),
+                            dto.assignedToName(),
+                            dto.taskDescription(),
+                            dto.pointsValue(),
+                            dto.taskType(),
+                            dto.type(),
+                            dto.periodStart(),
+                            dto.periodEnd(),
+                            dto.isMandatory(),
+                            isCompleted,
+                            isCompleted ? "bg-success" : dto.statusBadge()
+                    );
+                })
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +76,7 @@ public class TaskAssignmentService {
                 dto.periodStart(),
                 dto.periodEnd(),
                 mandatory,
-                null // Output ID
+                null
         );
     }
 
