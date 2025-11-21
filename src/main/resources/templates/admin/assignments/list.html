@@ -28,66 +28,92 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
 
-            <div class="assignments-table-card shadow-lg"> <div class="table-responsive">
-                <table class="table table-assignments table-hover mb-0 align-middle"> <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tarefa</th>
-                    <th>Atribuído Para</th>
-                    <th>Tipo</th>
-                    <th>Prazo</th>
-                    <th class="text-end">Ações</th>
-                </tr>
-                </thead>
-                    <tbody>
-                    <tr th:each="assign : ${assignments}"
-                        th:classappend="${assign.isCompleted ? 'table-success' : ''}">
-                        <td>
-                            <strong class="text-white" th:text="${assign.taskTitle}">Título</strong>
-                            <span th:if="${assign.isMandatory}" class="badge-mandatory rounded px-2 py-1 mt-1 d-inline-block">
-                                    <i class="fa-solid fa-circle-exclamation me-1"></i> OBRIGATÓRIO
-                                </span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="assignee-icon" th:classappend="${assign.type == 'Individual' ? 'text-info' : 'text-warning'}">
-                                    <i th:class="${assign.type == 'Individual' ? 'fa-solid fa-user' : 'fa-solid fa-users'}"></i>
+            <div class="assignments-table-card shadow-lg">
+                <div class="table-responsive">
+                    <table class="table table-assignments table-hover mb-0 align-middle">
+                        <thead>
+                        <tr>
+                            <th style="width: 50px;">ID</th> <th>Tarefa</th>
+                            <th>Atribuído Para</th>
+                            <th>Tipo</th> <th>Prazo</th>
+                            <th>Status</th> <th class="text-end">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="assign : ${assignments}"
+                            th:classappend="${assign.isCompleted ? 'table-success' : ''}">
+
+                            <td class="text-muted fw-bold">
+                                #<span th:text="${assign.id}">1</span>
+                            </td>
+
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <strong class="text-white" th:text="${assign.taskTitle}">Título da Tarefa</strong>
+
+                                    <small class="text-muted" style="font-size: 0.75rem;">
+                                        <i class="fa-solid fa-tag me-1"></i>
+                                        <span th:text="${assign.taskType}">WORK</span>
+                                    </small>
                                 </div>
-                                <span class="assignee-name" th:text="${assign.assignedToName}">Nome</span>
-                            </div>
-                        </td>
-                        <td>
-                                <span class="badge-type"
-                                      th:classappend="${assign.type == 'Individual' ? 'badge-individual' : 'badge-team'}"
-                                      th:text="${assign.type}">Individual</span>
-                        </td>
-                        <td>
-                            <div class="date-display">
-                                <span th:text="${#temporals.format(assign.periodEnd, 'dd/MM/yyyy')}">10/10/2025</span>
-                            </div>
-                        </td>
-                        <td>
-                            <span th:if="${assign.isCompleted}" class="badge bg-success">
-                                <i class="fa-solid fa-check"></i> Concluído
-                            </span>
-                            <span th:unless="${assign.isCompleted}" th:text="${#temporals.format(assign.periodEnd, 'dd/MM/yyyy')}">
-                                30/11/2025
-                            </span>
-                        </td>
-                        <td class="text-end">
-                            <a th:href="@{/admin/assignments/delete/{id}(id=${assign.id})}"
-                               class="btn btn-sm btn-outline-danger border-0"
-                               onclick="return confirm('Remover esta atribuição?');">
-                                <i class="fa-solid fa-trash fa-lg"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(assignments)}">
-                        <td colspan="6" class="text-center py-4 text-muted">Nenhuma atribuição encontrada.</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+
+                                <span th:if="${assign.isMandatory}" class="badge bg-danger mt-1">
+                                    <i class="fa-solid fa-circle-exclamation me-1"></i> OBRIGATÓRIO
+                                 </span>
+                            </td>
+
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="assignee-icon me-2"
+                                         th:classappend="${assign.type == 'Individual' ? 'text-info' : 'text-warning'}"
+                                         style="font-size: 1.2rem;">
+                                        <i th:class="${assign.type == 'Individual' ? 'fa-solid fa-user' : 'fa-solid fa-users'}"></i>
+                                    </div>
+                                    <span class="assignee-name text-light" th:text="${assign.assignedToName}">Nome</span>
+                                </div>
+                            </td>
+
+                            <td>
+                    <span class="badge border"
+                          th:classappend="${assign.type == 'Individual' ? 'border-info text-info' : 'border-warning text-warning'}"
+                          th:text="${assign.type}">Individual</span>
+                            </td>
+
+                            <td>
+                                <div class="date-display text-light opacity-75">
+                                    <i class="fa-regular fa-calendar me-1"></i>
+                                    <span th:text="${#temporals.format(assign.periodEnd, 'dd/MM/yyyy')}">10/10/2025</span>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span th:if="${assign.isCompleted}" class="badge bg-success rounded-pill">
+                                    <i class="fa-solid fa-check"></i> Concluído
+                                </span>
+                                <span th:unless="${assign.isCompleted}" class="badge bg-secondary bg-opacity-25 text-light border border-secondary rounded-pill">
+                                    <i class="fa-solid fa-clock"></i> Pendente
+                                </span>
+                            </td>
+
+                            <td class="text-end">
+                                <a th:href="@{/admin/assignments/delete/{id}(id=${assign.id})}"
+                                   class="btn btn-sm btn-outline-danger border-0"
+                                   title="Remover Atribuição"
+                                   onclick="return confirm('Remover esta atribuição?');">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(assignments)}">
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                <i class="fa-solid fa-clipboard-list fa-2x mb-3 opacity-50"></i>
+                                <p>Nenhuma atribuição encontrada.</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

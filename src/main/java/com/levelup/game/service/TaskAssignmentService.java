@@ -2,8 +2,6 @@ package com.levelup.game.service;
 
 import com.levelup.game.dto.assignment.AssignmentResponseDto;
 import com.levelup.game.dto.assignment.CreateAssignmentDto;
-import com.levelup.game.dto.assignment.UpdateAssignmentDto;
-import com.levelup.game.exception.ResourceNotFoundException;
 import com.levelup.game.mapper.TaskAssignmentMapper;
 import com.levelup.game.model.TaskAssignment;
 import com.levelup.game.repository.TaskAssignmentRepository;
@@ -35,13 +33,14 @@ public class TaskAssignmentService {
                     boolean isCompleted = false;
 
                     if (entity.getUser() != null) {
-                        isCompleted = completionRepository.existsByUserIdAndTaskId(
+                        isCompleted = completionRepository.existsByUser_IdAndTask_Id(
                                 entity.getUser().getId(),
                                 entity.getTask().getId()
                         );
                     }
                     return new AssignmentResponseDto(
                             dto.id(),
+                            entity.getTask().getId(),
                             dto.taskTitle(),
                             dto.assignedToName(),
                             dto.taskDescription(),

@@ -26,6 +26,7 @@ public class TaskAssignmentMapper {
 
         return new AssignmentResponseDto(
                 entity.getId(),
+                entity.getTask().getId(),
                 entity.getTask().getTitle(),
                 assigneeName,
                 entity.getTask().getDescription(),

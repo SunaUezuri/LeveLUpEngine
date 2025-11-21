@@ -69,7 +69,7 @@
                     </div>
 
                     <form th:action="@{/tasks/complete}" method="post" class="mt-auto">
-                        <input type="hidden" name="taskId" th:value="${assign.id}" /> <button type="submit" class="btn-complete">
+                        <input type="hidden" name="taskId" th:value="${assign.taskId}" /> <button type="submit" class="btn-complete">
                         <i class="fa-solid fa-check-circle me-2"></i> Concluir Missão
                     </button>
                     </form>

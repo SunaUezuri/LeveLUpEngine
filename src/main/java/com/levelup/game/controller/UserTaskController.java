@@ -57,6 +57,8 @@ public class UserTaskController {
 
             completionProducer.completeTask(msgDto);
 
+            Thread.sleep(500);
+
             redirectAttributes.addFlashAttribute("successMessage",
                     "🚀 Boa! Sua missão foi enviada para validação. Seus pontos cairão em breve!");
 

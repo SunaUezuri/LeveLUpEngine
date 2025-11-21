@@ -27,5 +27,5 @@ public interface TaskCompletionRepository extends JpaRepository<TaskCompletion, 
             @Param("P_COMPLETION_ID") Integer outputId
     );
 
-    boolean existsByUserIdAndTaskId(Long userId, Long taskId);
+    boolean existsByUser_IdAndTask_Id(Long userId, Long taskId);
 }

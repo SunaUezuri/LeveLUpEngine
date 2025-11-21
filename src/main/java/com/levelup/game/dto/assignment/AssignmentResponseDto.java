@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record AssignmentResponseDto(
         Long id,
+        Long taskId,
         String taskTitle,
         String assignedToName,
         String taskDescription,
