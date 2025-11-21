@@ -38,8 +38,8 @@
 | Tipo | Acesso |
 | :--- | :--- |
 | **🚀 Aplicação (Deploy)** | [![Deploy](https://img.shields.io/badge/Acessar-Aplicação_Online-2ea44f?style=for-the-badge&logo=rocket)](https://levelupengine.onrender.com) |
-| **📺 Vídeo Demonstração** | [![Demo](https://img.shields.io/badge/YouTube-Ver_Demo-FF0000?style=for-the-badge&logo=youtube)](https://youtube.com/shorts/4qmeg_C60-M?si=Bn6KEHaED0M-JH8l) |
-| **💡 Vídeo Pitch** | [![Pitch](https://img.shields.io/badge/YouTube-Ver_Pitch-FF0000?style=for-the-badge&logo=youtube)](COLOQUE_O_LINK_DO_PITCH_AQUI) |
+| **📺 Vídeo Demonstração** | [![Demo](https://img.shields.io/badge/YouTube-Ver_Demo-FF0000?style=for-the-badge&logo=youtube)]() |
+| **💡 Vídeo Pitch** | [![Pitch](https://img.shields.io/badge/YouTube-Ver_Pitch-FF0000?style=for-the-badge&logo=youtube)](https://youtube.com/shorts/4qmeg_C60-M?si=Bn6KEHaED0M-JH8l) |
 | **🔗 API de Recompensas (.NET)** | [![Repo .NET](https://img.shields.io/badge/GitHub-Repositório_.NET-512BD4?style=for-the-badge&logo=dotnet)](https://github.com/SunaUezuri/LevelUp) |
 
 </div>
