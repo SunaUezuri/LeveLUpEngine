@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="[http://www.thymeleaf.org](http://www.thymeleaf.org)" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Estoque de Prêmios - LevelUp</title>
-    <link href="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css)" rel="stylesheet">
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" th:href="@{/css/admin-layout.css}">
-    <link rel="stylesheet" th:href="@{/css/admin-users.css}"> </head>
+    <link rel="stylesheet" th:href="@{/css/admin-users.css}">
+</head>
 <body>
 
 <div class="wrapper">
     <nav th:replace="~{fragments/sidebar :: sidebar}"></nav>
 
     <div id="content">
-        <div class="container-fluid">
+        <div class="container-fluid p-4">
+
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2><i class="fa-solid fa-boxes-stacked" style="color: var(--primary-purple);"></i> Estoque da Loja</h2>
-                <span class="text-muted small">Gerenciamento de estoque via API .NET</span>
+                <h2 class="text-white">
+                    <i class="fa-solid fa-boxes-stacked" style="color: var(--primary-purple);"></i> Estoque da Loja
+                </h2>
+                <span class="text-light opacity-75 small">Gerenciamento de estoque via API .NET</span>
             </div>
 
             <div class="users-table-card shadow-lg">
@@ -34,15 +40,17 @@
                         <tbody>
                         <tr th:each="item : ${rewards}">
                             <td class="fw-bold text-white" th:text="${item.name}">Gift Card</td>
-                            <td class="text-muted small" th:text="${item.description}">Desc</td>
+                            <td class="text-light opacity-75 small" th:text="${item.description}">Desc</td>
                             <td class="text-warning fw-bold" th:text="${item.pointCost}">500</td>
                             <td>
-                                    <span class="badge"
+                                    <span class="badge rounded-pill"
                                           th:classappend="${item.stockQuantity > 5 ? 'bg-success' : (item.stockQuantity > 0 ? 'bg-warning text-dark' : 'bg-danger')}"
                                           th:text="${item.stockQuantity}">100</span>
                             </td>
                             <td>
-                                <span class="badge border border-secondary" th:text="${item.isActive == 'Y' ? 'ATIVO' : 'INATIVO'}">ATIVO</span>
+                                    <span class="badge border"
+                                          th:classappend="${item.isActive == 'Y' ? 'border-success text-success' : 'border-secondary text-secondary'}"
+                                          th:text="${item.isActive == 'Y' ? 'ATIVO' : 'INATIVO'}">ATIVO</span>
                             </td>
                         </tr>
                         </tbody>
@@ -52,6 +60,7 @@
         </div>
     </div>
 </div>
-<script src="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js)"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

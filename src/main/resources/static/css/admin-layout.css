@@ -1,3 +1,5 @@
+/* admin-layout.css */
+
 :root {
     --bg-dark: #0f0c29;
     --sidebar-bg: rgba(20, 20, 40, 0.95);
@@ -22,7 +24,7 @@ body {
     align-items: stretch;
 }
 
-/* --- Sidebar --- */
+/* --- Sidebar Config --- */
 #sidebar {
     min-width: 260px;
     max-width: 260px;
@@ -70,63 +72,21 @@ body {
     margin-right: 15px;
     width: 25px;
     text-align: center;
-    color: var(--accent-orange); /* Ícones laranjas por padrão */
+    color: var(--accent-orange);
 }
 
-/* Submenu Admin */
-#adminSubmenu {
-    background: rgba(0,0,0,0.2);
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-}
-
-#adminSubmenu li a {
-    padding-left: 50px;
-    font-size: 0.9rem;
-}
-
-/* --- Botão de Logout (Correção) --- */
-.logout-container {
-    padding: 20px;
-    border-top: 1px solid var(--glass-border);
-    background: rgba(0,0,0,0.2);
-    margin-top: auto; /* Empurra para o final */
-}
-
-.btn-logout {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--glass-border);
-    background: transparent; /* Fundo transparente */
-    color: var(--text-gray);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-
-.btn-logout:hover {
-    background: rgba(220, 53, 69, 0.15); /* Fundo avermelhado no hover */
-    border-color: #dc3545;
-    color: #ff6b6b;
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.2);
-    transform: translateY(-2px);
-}
-
-.btn-logout i {
-    color: inherit; /* Ícone segue a cor do texto */
-}
-
-/* Conteúdo Principal */
 #content {
     width: 100%;
     padding: 30px;
     min-height: 100vh;
 }
+
+/* Submenu e Logout */
+#adminSubmenu {
+    background: rgba(0,0,0,0.2);
+}
+#adminSubmenu li a { padding-left: 50px; font-size: 0.9rem; }
+
+.logout-container { padding: 20px; margin-top: auto; border-top: 1px solid var(--glass-border); }
+.btn-logout { width: 100%; padding: 12px; background: transparent; color: var(--text-gray); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; }
+.btn-logout:hover { background: rgba(220, 53, 69, 0.15); border-color: #dc3545; color: #ff6b6b; }
