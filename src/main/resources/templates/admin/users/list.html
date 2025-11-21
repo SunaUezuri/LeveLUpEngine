@@ -82,9 +82,9 @@
 
                             <td>
                                 <div class="status-indicator"
-                                     th:classappend="${user.isActive == 'Y' ? 'status-active' : 'status-inactive'}">
-                                    <span class="dot" th:classappend="${user.isActive == 'Y' ? 'dot-active' : 'dot-inactive'}"></span>
-                                    <span th:text="${user.isActive == 'Y' ? 'Ativo' : 'Inativo'}">Ativo</span>
+                                     th:classappend="${user.isActive.toString() == 'Y' ? 'status-active' : 'status-inactive'}">
+                                    <span class="dot" th:classappend="${user.isActive.toString() == 'Y' ? 'dot-active' : 'dot-inactive'}"></span>
+                                    <span th:text="${user.isActive.toString() == 'Y' ? 'Ativo' : 'Inativo'}">Ativo</span>
                                 </div>
                             </td>
                         </tr>

@@ -49,8 +49,8 @@
                             </td>
                             <td>
                                     <span class="badge border"
-                                          th:classappend="${item.isActive == 'Y' ? 'border-success text-success' : 'border-secondary text-secondary'}"
-                                          th:text="${item.isActive == 'Y' ? 'ATIVO' : 'INATIVO'}">ATIVO</span>
+                                          th:classappend="${item.isActive.toString() == 'Y' ? 'border-success text-success' : 'border-secondary text-secondary'}"
+                                          th:text="${item.isActive.toString() == 'Y' ? 'ATIVO' : 'INATIVO'}">ATIVO</span>
                             </td>
                         </tr>
                         </tbody>
