@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="[http://www.thymeleaf.org](http://www.thymeleaf.org)" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Estoque de Prêmios - LevelUp</title>
+    <link href="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css)" rel="stylesheet">
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    <link rel="stylesheet" th:href="@{/css/admin-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-users.css}"> </head>
+<body>
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header"><h3>LevelUp</h3></div>
+        <ul class="list-unstyled components">
+            <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="/tasks/my-tasks"><i class="fa-solid fa-list-check"></i> Minhas Tarefas</a></li>
+            <li><a href="/shop"><i class="fa-solid fa-store"></i> Loja</a></li>
+            <li sec:authorize="hasRole('ADMIN')">
+                <a href="#adminSubmenu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle active">
+                    <i class="fa-solid fa-user-shield"></i> Painel Admin
+                </a>
+                <ul class="collapse show list-unstyled" id="adminSubmenu">
+                    <li><a href="/admin/tasks">Gerenciar Tarefas</a></li>
+                    <li><a href="/admin/users">Gerenciar Usuários</a></li>
+                    <li><a href="/admin/assignments">Atribuições</a></li>
+                    <li><a href="/admin/rewards" class="active">Recompensas</a></li> </ul>
+            </li>
+        </ul>
+        <div class="logout-container mt-auto">
+            <form th:action="@{/logout}" method="post"><button type="submit" class="btn-logout"><i class="fa-solid fa-power-off"></i> Sair</button></form>
+        </div>
+    </nav>
+
+    <div id="content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fa-solid fa-boxes-stacked" style="color: var(--primary-purple);"></i> Estoque da Loja</h2>
+                <span class="text-muted small">Gerenciamento de estoque via API .NET</span>
+            </div>
+
+            <div class="users-table-card shadow-lg">
+                <div class="table-responsive">
+                    <table class="table table-users table-hover mb-0 align-middle">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Descrição</th>
+                            <th>Custo (XP)</th>
+                            <th>Estoque</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${rewards}">
+                            <td class="fw-bold text-white" th:text="${item.name}">Gift Card</td>
+                            <td class="text-muted small" th:text="${item.description}">Desc</td>
+                            <td class="text-warning fw-bold" th:text="${item.pointCost}">500</td>
+                            <td>
+                                    <span class="badge"
+                                          th:classappend="${item.stockQuantity > 5 ? 'bg-success' : (item.stockQuantity > 0 ? 'bg-warning text-dark' : 'bg-danger')}"
+                                          th:text="${item.stockQuantity}">100</span>
+                            </td>
+                            <td>
+                                <span class="badge border border-secondary" th:text="${item.isActive == 'Y' ? 'ATIVO' : 'INATIVO'}">ATIVO</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="[https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js)"></script>
+</body>
+</html>

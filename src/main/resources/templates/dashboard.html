@@ -35,8 +35,7 @@
                 </a>
             </li>
             <li>
-                <!-- Link para a Loja (Recompensas) -->
-                <a href="/shop">
+                <a href="/shop" th:classappend="${activePage == 'shop' ? 'active' : ''}">
                     <i class="fa-solid fa-store"></i> Loja de Prêmios
                 </a>
             </li>
@@ -54,6 +53,7 @@
                             Atribuições
                         </a>
                     </li>
+                    <li><a href="/admin/rewards" class="active">Recompensas</a></li>
                 </ul>
             </li>
         </ul>

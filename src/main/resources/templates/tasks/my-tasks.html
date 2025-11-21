@@ -20,7 +20,11 @@
         <ul class="list-unstyled components">
             <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
             <li><a href="/tasks/my-tasks" class="active"><i class="fa-solid fa-list-check"></i> Minhas Tarefas</a></li>
-            <li><a href="/shop"><i class="fa-solid fa-store"></i> Loja de Prêmios</a></li>
+            <li>
+                <a href="/shop" th:classappend="${activePage == 'shop' ? 'active' : ''}">
+                    <i class="fa-solid fa-store"></i> Loja de Prêmios
+                </a>
+            </li>
 
             <li sec:authorize="hasRole('ADMIN')">
                 <a href="#adminSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -30,6 +34,7 @@
                     <li><a href="/admin/tasks">Gerenciar Tarefas</a></li>
                     <li><a href="/admin/users">Gerenciar Usuários</a></li>
                     <li><a href="/admin/assignments">Atribuições</a></li>
+                    <li><a href="/admin/rewards" class="active">Recompensas</a></li>
                 </ul>
             </li>
         </ul>
