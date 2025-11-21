@@ -15,6 +15,7 @@ public class UserMapper {
                 entity.getId(),
                 entity.getFullName(),
                 entity.getEmail(),
+                entity.getPointBalance(),
                 entity.getJobTitle(),
                 (entity.getTeam() != null) ? entity.getTeam().getTeamName() : "Sem Time",
                 entity.getRole(),

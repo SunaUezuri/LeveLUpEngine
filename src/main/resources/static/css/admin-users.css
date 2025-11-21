@@ -1,0 +1,123 @@
+/* --- Card Principal --- */
+.users-table-card {
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* --- Tabela --- */
+.table-users {
+    --bs-table-bg: transparent;
+    color: #e0e0e0;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table-users th {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #a0a0a0;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-users td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
+}
+
+.table-users tr:hover td {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Avatar (Inicial do Nome) --- */
+.user-profile-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.user-info h6 {
+    margin: 0;
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.user-info small {
+    color: #a0a0a0;
+    font-size: 0.8rem;
+}
+
+/* --- Badges de Role --- */
+.badge-role {
+    font-size: 0.7rem;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.role-admin {
+    background: rgba(255, 81, 47, 0.15);
+    color: #ff7675;
+    border-color: rgba(255, 81, 47, 0.3);
+}
+
+.role-user {
+    background: rgba(142, 45, 226, 0.15);
+    color: #a29bfe;
+    border-color: rgba(142, 45, 226, 0.3);
+}
+
+/* --- Status Indicator --- */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-active { color: #00b894; }
+.status-inactive { color: #636e72; }
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-active { background-color: #00b894; box-shadow: 0 0 8px #00b894; }
+.dot-inactive { background-color: #636e72; }
+
+/* Saldo de Pontos */
+.points-display {
+    color: #ffc107;
+    font-weight: 700;
+    font-family: monospace;
+    font-size: 1rem;
+}

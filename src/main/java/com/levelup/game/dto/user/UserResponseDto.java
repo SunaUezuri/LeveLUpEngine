@@ -4,6 +4,7 @@ public record UserResponseDto(
         Long id,
         String fullName,
         String email,
+        Integer pointBalance,
         String jobTitle,
         String teamName,
         String role,
