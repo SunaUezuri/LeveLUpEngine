@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<nav id="sidebar" th:fragment="sidebar">
+    <div class="sidebar-header">
+        <h3>LevelUp</h3>
+        <small class="text-muted" style="letter-spacing: 1px;">GAME ENGINE v1.0</small>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li>
+            <a href="/dashboard" th:classappend="${activePage == 'dashboard' ? 'active' : ''}">
+                <i class="fa-solid fa-chart-pie"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/tasks/my-tasks" th:classappend="${activePage == 'my-tasks' ? 'active' : ''}">
+                <i class="fa-solid fa-list-check"></i> Minhas Tarefas
+            </a>
+        </li>
+
+        <li>
+            <a href="#shopSubmenu" data-bs-toggle="collapse"
+               th:aria-expanded="${activePage == 'shop' || activePage == 'shop-history'}"
+               class="dropdown-toggle"
+               th:classappend="${activePage == 'shop' || activePage == 'shop-history' ? 'active' : ''}">
+                <i class="fa-solid fa-store"></i> Loja de Prêmios
+            </a>
+            <ul class="collapse list-unstyled" id="shopSubmenu"
+                th:classappend="${activePage == 'shop' || activePage == 'shop-history' ? 'show' : ''}">
+                <li>
+                    <a href="/shop" th:classappend="${activePage == 'shop' ? 'active' : ''}">
+                        Catálogo
+                    </a>
+                </li>
+                <li>
+                    <a href="/shop/history" th:classappend="${activePage == 'shop-history' ? 'active' : ''}">
+                        Meus Resgates
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li sec:authorize="hasRole('ADMIN')">
+            <a href="#adminSubmenu" data-bs-toggle="collapse"
+               th:aria-expanded="${activePage == 'admin-tasks' || activePage == 'admin-users' || activePage == 'admin-assignments' || activePage == 'admin-rewards'}"
+               class="dropdown-toggle"
+               th:classappend="${activePage == 'admin-tasks' || activePage == 'admin-users' || activePage == 'admin-assignments' || activePage == 'admin-rewards' ? 'active' : ''}">
+                <i class="fa-solid fa-user-shield"></i> Painel Admin
+            </a>
+
+            <ul class="collapse list-unstyled" id="adminSubmenu"
+                th:classappend="${activePage == 'admin-tasks' || activePage == 'admin-users' || activePage == 'admin-assignments' || activePage == 'admin-rewards' ? 'show' : ''}">
+
+                <li>
+                    <a href="/admin/tasks" th:classappend="${activePage == 'admin-tasks' ? 'active' : ''}">
+                        Gerenciar Tarefas
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/assignments" th:classappend="${activePage == 'admin-assignments' ? 'active' : ''}">
+                        Atribuições
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/users" th:classappend="${activePage == 'admin-users' ? 'active' : ''}">
+                        Gerenciar Usuários
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/rewards" th:classappend="${activePage == 'admin-rewards' ? 'active' : ''}">
+                        Recompensas
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="logout-container mt-auto">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn-logout">
+                <i class="fa-solid fa-power-off"></i> Sair do Sistema
+            </button>
+        </form>
+    </div>
+</nav>
+
+</body>
+</html>

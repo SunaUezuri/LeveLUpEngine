@@ -14,21 +14,7 @@
 
 <div class="wrapper">
     <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>LevelUp</h3>
-        </div>
-        <ul class="list-unstyled components">
-            <li><a href="/admin/tasks"><i class="fa-solid fa-arrow-left"></i> Voltar para Lista</a></li>
-        </ul>
-        <div class="logout-container mt-auto">
-            <form th:action="@{/logout}" method="post">
-                <button type="submit" class="btn-logout">
-                    <i class="fa-solid fa-power-off"></i> Sair do Sistema
-                </button>
-            </form>
-        </div>
-    </nav>
+    <nav th:replace="~{fragments/sidebar :: sidebar}"></nav>
 
     <!-- CONTEÚDO CENTRALIZADO -->
     <!-- Adicionado 'min-vh-100', 'flex-column', 'justify-content-center', 'align-items-center' -->

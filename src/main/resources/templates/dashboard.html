@@ -17,55 +17,7 @@
 
 <div class="wrapper">
     <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3><i class="fa-solid fa-rocket text-warning"></i> LevelUp</h3>
-            <small class="text-muted">Game Engine v1.0</small>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li>
-                <a href="/dashboard" class="active">
-                    <i class="fa-solid fa-chart-line"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="/tasks/my-tasks">
-                    <i class="fa-solid fa-list-check"></i> Minhas Tarefas
-                </a>
-            </li>
-            <li>
-                <a href="/shop" th:classappend="${activePage == 'shop' ? 'active' : ''}">
-                    <i class="fa-solid fa-store"></i> Loja de Prêmios
-                </a>
-            </li>
-
-            <!-- Menu Apenas para ADMIN -->
-            <li sec:authorize="hasRole('ADMIN')">
-                <a href="#adminSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fa-solid fa-user-shield"></i> Painel Admin
-                </a>
-                <ul class="collapse list-unstyled" id="adminSubmenu">
-                    <li><a href="/admin/tasks">Gerenciar Tarefas</a></li>
-                    <li><a href="/admin/users">Gerenciar Usuários</a></li>
-                    <li>
-                        <a href="/admin/assignments" th:classappend="${activePage == 'admin-assignments' ? 'active' : ''}">
-                            Atribuições
-                        </a>
-                    </li>
-                    <li><a href="/admin/rewards" class="active">Recompensas</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="mt-auto p-3">
-            <form th:action="@{/logout}" method="post">
-                <button type="submit" class="btn btn-outline-danger w-100 btn-sm">
-                    <i class="fa-solid fa-right-from-bracket"></i> Sair
-                </button>
-            </form>
-        </div>
-    </nav>
+    <nav th:replace="~{fragments/sidebar :: sidebar}"></nav>
 
     <!-- Conteúdo da Página -->
     <div id="content">

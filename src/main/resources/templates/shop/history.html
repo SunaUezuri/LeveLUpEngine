@@ -12,38 +12,7 @@
 <body>
 
 <div class="wrapper">
-    <nav id="sidebar">
-        <div class="sidebar-header"><h3>LevelUp</h3></div>
-        <ul class="list-unstyled components">
-            <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-            <li><a href="/tasks/my-tasks"><i class="fa-solid fa-list-check"></i> Minhas Tarefas</a></li>
-
-            <li>
-                <a href="#shopSubmenu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle active">
-                    <i class="fa-solid fa-store"></i> Loja de Prêmios
-                </a>
-                <ul class="collapse show list-unstyled" id="shopSubmenu">
-                    <li><a href="/shop">Catálogo</a></li>
-                    <li><a href="/shop/history" class="active">Meus Resgates</a></li>
-                </ul>
-            </li>
-
-            <li sec:authorize="hasRole('ADMIN')">
-                <a href="#adminSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fa-solid fa-user-shield"></i> Painel Admin
-                </a>
-                <ul class="collapse list-unstyled" id="adminSubmenu">
-                    <li><a href="/admin/tasks">Gerenciar Tarefas</a></li>
-                    <li><a href="/admin/users">Gerenciar Usuários</a></li>
-                    <li><a href="/admin/assignments">Atribuições</a></li>
-                    <li><a href="/admin/rewards" class="active">Recompensas</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="logout-container mt-auto">
-            <form th:action="@{/logout}" method="post"><button type="submit" class="btn-logout"><i class="fa-solid fa-power-off"></i> Sair</button></form>
-        </div>
-    </nav>
+    <nav th:replace="~{fragments/sidebar :: sidebar}"></nav>
 
     <div id="content">
         <div class="container-fluid">
