@@ -13,9 +13,16 @@ import java.util.List;
 @Repository
 public interface TaskAssignmentRepository extends JpaRepository<TaskAssignment, Long> {
 
-    @Query("SELECT ta FROM TaskAssignment ta " +
-            "WHERE (ta.user.id = :userId OR ta.team.id = :teamId) " +
-            "AND CURRENT_DATE BETWEEN ta.periodStart AND ta.periodEnd")
+    @Query("""
+           SELECT ta FROM TaskAssignment ta
+           WHERE (ta.user.id = :userId OR ta.team.id = :teamId)
+           AND CURRENT_DATE BETWEEN ta.periodStart AND ta.periodEnd
+           AND NOT EXISTS (
+               SELECT tc FROM TaskCompletion tc
+               WHERE tc.task.id = ta.task.id
+               AND tc.user.id = :userId
+           )
+           """)
     List<TaskAssignment> findMyActiveAssignments(@Param("userId") Long userId, @Param("teamId") Long teamId);
 
     @Procedure(procedureName = "PKG_LEVELUP_APP.PR_CREATE_TASK_ASSIGNMENT")
